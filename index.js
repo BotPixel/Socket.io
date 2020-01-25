@@ -20,6 +20,7 @@ io.on('connection', function(socket) {
   
   socket.on('chat message', function(data) {
     io.in(socket.room).emit('chat message', data);
+    io.emit('chat message', ('Socket said: ' + data + ' in ' + socket.room));
   });
   
   socket.on('leave', function(room) {
