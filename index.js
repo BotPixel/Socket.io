@@ -24,13 +24,34 @@ io.on('connection', function(socket) {
   });
   
   socket.on('event', function(data) {
-    io.in(socket.room).emit('chat', data);
+    io.in(socket.room).emit('event', data);
+  });
+  
+  socket.on('move', function(data) {
+    io.in(socket.room).emit('move', data);
+  });
+  
+  socket.on('shoot', function(data) {
+    io.in(socket.room).emit('shoot', data);
+  });
+  
+  socket.on('reload', function(data) {
+    io.in(socket.room).emit('reload', data);
+  });
+  
+  socket.on('damage', function(data) {
+    io.in(socket.room).emit('damage', data);
+  });
+  
+  socket.on('change', function(data) {
+    io.in(socket.room).emit('change', data);
   });
   
   socket.on('leave', function(room) {
     io.emit('chat message', 'Left Room.')
     socket.room = 'classic';
-    socket.disconnect;
+    socket.disconnect();
+    socket.join('classic')
   });
 });
 
