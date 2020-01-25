@@ -8,10 +8,11 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket) {
+  io.emit('chat message', 'New Socket Connected.')
   
   socket.on('connect', function(room) {
+    io.emit('chat message', 'Joined Room.')
     socket.join(room);
-    io.emit('chat message', 'Connected.')
   });
   
   socket.on('chat message', function(room, data) {
@@ -19,7 +20,7 @@ io.on('connection', function(socket) {
   });
   
   socket.on('disconnect', function(room2){
-    io.emit('chat message', 'Disconnected.')
+    io.emit('chat message', 'Left Room.')
     socket.leave(room2);
   });
 });
