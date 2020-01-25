@@ -9,20 +9,19 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
-    io.in(msg.get('room').emit('chat message', msg.get('message'));
+    io.in(msg['room'].emit('chat message', msg['message']);
   });
 });
   
 io.on('connection', function(socket){
   socket.on('event', function(msg){
-    io.in(msg.get('room').emit(msg.get('event'), msg.get('data'));
+    io.in(msg['room'].emit(msg['event'], msg['data']);
   });
 });
 
 io.on('connection', function(socket){
   socket.on('join', function(room){
     socket.join(room);
-    socket.room = room;
   });
   });
 });
