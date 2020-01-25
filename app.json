@@ -2,7 +2,7 @@
   "name": "Socket-Chat-Example",
   "description": "my first socket.io app",
   "website": "https://github.com/socketio/chat-example",
-  "repository": "https://github.com/socketio/chat-example",
+  "repository": "https://github.com/BotPixel/Socket.io",
   "logo": "https://node-js-sample.herokuapp.com/node.svg",
   "success_url": "/",
   "keywords": [
