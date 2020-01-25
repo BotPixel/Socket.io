@@ -23,13 +23,11 @@ io.on('connection', function(socket){
   socket.on('join', function(room){
     socket.join(room);
   });
-  });
 });
 
 io.on('connection', function(socket){
   socket.on('leave', function(room){
     socket.leave(room);
-  });
   });
 });
 
