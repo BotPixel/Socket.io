@@ -21,10 +21,10 @@ io.on('connection', function(socket) {
     io.in(socket.room).emit('chat message', data);
   });
   
-  socket.on('leave', function(room2) {
+  socket.on('leave', function(room) {
     io.emit('chat message', 'Left Room.')
     socket.room = 'classic';
-    socket.leave(room2);
+    socket.disconnect;
   });
 });
 
