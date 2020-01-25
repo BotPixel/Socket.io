@@ -9,22 +9,25 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket) {
   io.emit('chat message', 'New Socket Connected.')
+  socket.room = 'classic';
   
-  socket.on('connect', function(room) {
+  socket.on('create', function(room) {
     io.emit('chat message', 'Joined Room.')
+    socket.room = room;
     socket.join(room);
   });
   
-  socket.on('chat message', function(room, data) {
-    io.in(room).emit('chat message', data);
+  socket.on('chat message', function(data) {
+    io.in(socket.room).emit('chat message', data);
   });
   
-  socket.on('disconnect', function(room2){
+  socket.on('leave', function(room2) {
     io.emit('chat message', 'Left Room.')
+    socket.room = 'classic';
     socket.leave(room2);
   });
 });
 
-http.listen(port, function(){
+http.listen(port, function() {
   console.log('listening on *:' + port);
 });
