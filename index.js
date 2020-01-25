@@ -18,8 +18,8 @@ io.on('connection', function(socket) {
     socket.join(room);
   });
   
-  socket.on('chat message', function(data) {
-    io.in(socket.room).emit('chat message', data);
+  socket.on('chat', function(data) {
+    io.in(socket.room).emit('chat', data);
     io.emit('chat message', ('Socket said: ' + data + ' in ' + socket.room));
   });
   
