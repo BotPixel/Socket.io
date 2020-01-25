@@ -9,13 +9,13 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
-    io.in(msg['room'].emit('chat message', msg['message']);
+    io.in(msg['room'].emit('chat message', msg['message']));
   });
 });
   
 io.on('connection', function(socket){
   socket.on('event', function(msg){
-    io.in(msg['room'].emit(msg['event'], msg['data']);
+    io.in(msg['room'].emit(msg['event'], msg['data']));
   });
 });
 
