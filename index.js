@@ -8,16 +8,17 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
+  
   socket.on('join', function(room){
     socket.join(room);
   });
   
   socket.on('chat message', function(msg){
-    io.in(msg['room'].emit('chat message', msg['message']));
+    io.in(msg['room']).emit('chat message', msg['message']);
   });
   
-  socket.on('leave', function(room){
-    socket.leave(room);
+  socket.on('leave', function(room2){
+    socket.leave(room2);
   });
 });
 
