@@ -10,6 +10,7 @@ app.get('/', function(req, res){
 io.on('connection', function(socket) {
   io.emit('chat message', 'New Socket Connected.')
   socket.room = 'classic';
+  socket.join('classic');
   
   socket.on('create', function(room) {
     io.emit('chat message', 'Joined Room.')
