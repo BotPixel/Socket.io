@@ -7,17 +7,19 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function(socket){
+io.on('connection', function(socket) {
   
-  socket.on('connect', function(room){
+  socket.on('connect', function(room) {
     socket.join(room);
+    io.emit('chat message', 'Connected.')
   });
   
-  socket.on('event', function(room, event, data){
-    io.in(room).emit(event, data);
+  socket.on('chat message', function(room, data) {
+    io.in(room).emit('chat message', data);
   });
   
   socket.on('disconnect', function(room2){
+    io.emit('chat message', 'Disconnected.')
     socket.leave(room2);
   });
 });
