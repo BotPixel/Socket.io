@@ -13,8 +13,8 @@ io.on('connection', function(socket){
     socket.join(room);
   });
   
-  socket.on('chat message', function(msg){
-    io.in(msg['room']).emit('chat message', msg['message']);
+  socket.on('chat message', function(room, msg){
+    io.in(room).emit('chat message', msg);
   });
   
   socket.on('leave', function(room2){
