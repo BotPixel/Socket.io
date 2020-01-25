@@ -11,14 +11,21 @@ io.on('connection', function(socket){
   socket.on('chat', function(msg){
     io.emit('chat', msg);
   });
+});
+
+io.on('connection', function(socket){
   socket.on('join', function(room){
     socket.join(room);
   });
-  socket.on('leave', function(room){
-    socket.leave(room);
   });
 });
 
+io.on('connection', function(socket){
+  socket.on('leave', function(room){
+    socket.join(room);
+  });
+  });
+});
 
 http.listen(port, function(){
   console.log('listening on *:' + port);
