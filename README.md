@@ -7,3 +7,7 @@ eg. `https://heroku.com/deploy?template=<URL OF YOUR GITHUB PROJECT>`
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/BotPixel/Socket.io)
 
 Code is located in `index.js`, if you want to modify the code for your own use, duplicate / clone this GitHub respository for your own use!
+
+View syntax of sending (emit) data: https://socket.io/docs/emit-cheatsheet/
+
+You can refer to the https://socket.io website for more information or syntaxes.
