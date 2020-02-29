@@ -6,6 +6,21 @@ var port = process.env.PORT || 3000;
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
+//  DO NOT EDIT CODE ABOVE!
+
+// Template of handling an event
+//
+/// socket.on('<event name>', function('<variable name>') {
+/// < whenever this event is called by a client, stuff inside will execute >
+/// }
+
+// Example of handling an event
+//
+/// socket.on('move', function(data) {
+///  io.in(socket.room).emit('move', data);
+///  });
+//
+// In this example, when the "move" function has been called, send data from the function to all clients
 
 io.on('connection', function(socket) {
   io.emit('chat message', 'New Socket Connected.')
