@@ -24,13 +24,10 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket) {
   io.emit('chat message', 'New Socket Connected.')
-  socket.room = 'classic';
-  socket.join('classic');
+  socket.room = 'none';
   
   socket.on('create', function(data) {
     io.emit('chat message', 'Socket Joined Room: ' + data)
-    socket.leave(socket.room);
-    socket.leave('classic');
     socket.room = data;
     socket.join(data);
   });
