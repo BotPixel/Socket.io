@@ -67,7 +67,7 @@ io.on('connection', function(socket) {
     io.emit('chat message', 'Left Room.')
     socket.room = 'classic';
     socket.leave(room);
-    socket.join('classic')
+    socket.join('classic');
   });
 });
 
