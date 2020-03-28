@@ -28,11 +28,17 @@ io.on('connection', function(socket) {
   socket.join('classic');
   
   socket.on('create', function(data) {
-    io.emit('chat message', 'Joined Room.')
+    io.emit('chat message', 'Socket Joined Room: ' + data)
     socket.leave(socket.room);
     socket.leave('classic');
-    socket.room = data.room;
-    socket.join(data.room);
+    socket.room = data;
+    socket.join(data);
+  });
+  
+  socket.on('join', function(data) {
+    io.emit('chat message', 'Socket Joined Room: ' + data)
+    socket.room = data;
+    socket.join(data);
   });
   
   socket.on('chat', function(data) {
@@ -65,11 +71,8 @@ io.on('connection', function(socket) {
   });
   
   socket.on('leave', function(data) {
-    io.emit('chat message', 'Left Room.')
-    socket.room = 'classic';
-    socket.leave(data.room);
-    socket.leave('classic');
-    socket.join('classic');
+    io.emit('chat message', ('Socket Left Room: ' + data));
+    socket.leave(data);
   });
 });
 
