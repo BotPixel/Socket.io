@@ -69,8 +69,9 @@ io.on('connection', function(socket) {
   
   socket.on('leave', function(data) {
     io.emit('chat message', ('Socket Left Room: ' + data));
+    let rooms = socket.rooms;
+    rooms.forEach(element => socket.leave(element));
     socket.room = 'none';
-    socket.leave(data);
   });
 });
 
