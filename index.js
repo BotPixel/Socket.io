@@ -29,6 +29,7 @@ io.on('connection', function(socket) {
   
   socket.on('create', function(room) {
     io.emit('chat message', 'Joined Room.')
+    socket.leave(socket.room);
     socket.room = room;
     socket.join(room);
   });
@@ -65,7 +66,7 @@ io.on('connection', function(socket) {
   socket.on('leave', function(room) {
     io.emit('chat message', 'Left Room.')
     socket.room = 'classic';
-    socket.disconnect();
+    socket.leave(room);
     socket.join('classic')
   });
 });
