@@ -20,11 +20,12 @@ app.get('/', function(req, res){
 ///  io.in(socket.room).emit('move', data);
 ///  });
 //
-// In this example, when the "move" function has been called, send data from the function to all clients
+// In this example, when the "move" function has been called, send data from the function to all clients in the room that is is currently in
 
 io.on('connection', function(socket) {
   io.emit('chat message', 'New Socket Connected.')
-  socket.room = 'none';
+  socket.room = 'lobby';
+  socket.join('lobby')
   
   socket.on('create', function(data) {
     io.emit('chat message', 'Socket Joined Room: ' + data)
@@ -41,6 +42,11 @@ io.on('connection', function(socket) {
   socket.on('chat', function(data) {
     io.emit('chat message', ('Socket said: ' + data + ' in ' + socket.room));
     io.in(socket.room).emit('chat', data);
+  });
+  
+  socket.on('global chat', function(data) {
+    io.emit('chat message', ('Socket said: ' + data + ' in global chat'));
+    io.in('lobby').emit('global chat', data);
   });
   
   socket.on('event', function(data) {
