@@ -27,12 +27,12 @@ io.on('connection', function(socket) {
   socket.room = 'classic';
   socket.join('classic');
   
-  socket.on('create', function(room) {
+  socket.on('create', function(data) {
     io.emit('chat message', 'Joined Room.')
     socket.leave(socket.room);
     socket.leave('classic');
-    socket.room = room;
-    socket.join(room);
+    socket.room = data.room;
+    socket.join(data.room);
   });
   
   socket.on('chat', function(data) {
@@ -64,10 +64,11 @@ io.on('connection', function(socket) {
     io.in(socket.room).emit('change', data);
   });
   
-  socket.on('leave', function(room) {
+  socket.on('leave', function(data) {
     io.emit('chat message', 'Left Room.')
     socket.room = 'classic';
-    socket.leave(room);
+    socket.leave(data.room);
+    socket.leave('classic');
     socket.join('classic');
   });
 });
