@@ -30,6 +30,7 @@ io.on('connection', function(socket) {
   socket.on('create', function(room) {
     io.emit('chat message', 'Joined Room.')
     socket.leave(socket.room);
+    socket.leave('classic');
     socket.room = room;
     socket.join(room);
   });
