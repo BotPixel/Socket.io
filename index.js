@@ -78,6 +78,14 @@ io.on('connection', function(socket) {
     socket.leave(data);
     socket.room = 'none';
   });
+  
+  socket.on('getRoomNames', (data, callback) => {
+    const roomNames = [];
+    for (const id in rooms) {
+      const {name} = rooms[id];
+      const room = {name, id};
+      roomNames.push(room);
+    });  
 });
 
 http.listen(port, function() {
